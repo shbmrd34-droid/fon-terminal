@@ -1,0 +1,35 @@
+name: Build Flet APK
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flet[cli] python-dotenv yfinance pandas google-genai
+
+    - name: Create .env file from Secrets
+      run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
+
+    - name: Build Android APK
+      run: flet build apk
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release
+        path: build/apk/app-release.apk
