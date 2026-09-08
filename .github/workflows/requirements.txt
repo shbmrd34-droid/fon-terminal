@@ -1,5 +1,1 @@
 flet
-python-dotenv
-yfinance
-pandas
-google-genai
