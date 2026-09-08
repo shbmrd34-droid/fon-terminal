@@ -3,7 +3,7 @@ import urllib.request
 import json
 
 # BURAYA RENDER'IN SANA VERDİĞİ LİNKİ YAPIŞTIR (Sonundaki /analiz?sembol= kısmına dikkat et)
-API_URL = "https://SENIN-RENDER-ADRESIN-BURAYA.onrender.com/analiz?sembol="
+API_URL = "https://fon-api.onrender.com/analiz?sembol="
 
 def main(page: ft.Page):
     page.title = "Fon Terminali"
